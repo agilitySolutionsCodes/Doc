@@ -1,0 +1,54 @@
+[Objetivo]
+
+Centralizar a informação referente as documentações criadas e alteradas pelos gerentes de tal forma que esta esteja disponível a consulta em um layout simples e de fácil visualização e gerenciamento dos dados por todas as partes interessadas nas informações.
+
+[Perfis de Acesso]
+
+Gerente e Controlador
+
+[Gerente] Tem o papel principal de inserir e manter as documentações atualizadas dentro do sistema, é também informado caso o prazo de alguma documentação esteja próximo de espirar.
+
+[Controlador] Responsável por monitorar o diretório de documentos afim de manter-se atualizado sobre as atualizações de documentação interna e externa de projetos.
+
+
+[Novo Projeto]
+
+Cadastro Editável? 
+
+
+
+Somente Um Gerente Por Projeto?
+
+
+
+Cadastro de Clientes?
+
+
+
+
+
+
+(Obs: Uma base de clientes deverá ser construída e muito bem atualizada com informações referentes ao cliente)
+Somente serão aceitas propostas padronizadas em PDF tais como as utilizadas pelo departamento de Marketing hoje.
+
+
+Onde serão salvas arquivos com as propostas? Existirá backup desses arquivos?
+
+
+
+
+
+(Obs: Uma vez que estes arquivos são informações confidenciais e sigilosas da empresa x cliente)
+
+[Cadastrar Documentação]
+
+Somente usuários com perfil: Gerente poderão realizar novos cadastros?
+
+
+Link para página de detalhe da etapa do projeto somente deverá conter as opções Salvar e Imprimir?
+
+
+Como o sistema deve se comportar caso uma documentação não seja aceita?
+
+
+(Obs: Quantos templates (tipos de documentos)?

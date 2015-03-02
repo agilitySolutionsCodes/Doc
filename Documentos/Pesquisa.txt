@@ -1,0 +1,25 @@
+Interface:
+
+* Controles UI JQuery
+http://jqueryui.com/
+
+* Máscaras Campos JQuery 
+http://digitalbush.com/projects/masked-input-plugin/
+
+
+
+Desenvolvimento: 
+
+* Serviços
+
+Gerenciamento de arquivos com WCF
+https://msdn.microsoft.com/en-us/library/dd456779(v=vs.110).aspx
+
+* MVC 
+
+http://www.asp.net/mvc
+
+
+desempenho individual + desempenho equipe * numero de integrantes equipe
+_________________________________________________________________________
+					3
