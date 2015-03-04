@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcDocs.Models;
 
 namespace MvcDocs.Controllers
 {
-    public class HomeController : Controller
+    #region Home Controller
+    [Authorize]
+    public class HomeController : BaseController
     {
+        #region Actions
         public ActionResult Index()
         {
             return View();
@@ -71,5 +75,7 @@ namespace MvcDocs.Controllers
                 return View();
             }
         }
+        #endregion
     }
+    #endregion
 }

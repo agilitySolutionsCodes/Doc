@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Registrar";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Criar uma nova conta.</h2>
+</hgroup>
+
+@using (Html.BeginForm("Registrar", "Conta"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.Label("Nome")
+                @Html.TextBox("Nome")
+
+                @Html.Label("Email")
+                @Html.TextBox("Email")
+            </li>
+            <li>
+                @Html.Label("Senha")
+                @Html.Password("Senha")
+            </li>
+            <li>
+                @Html.Label("Confirmar Senha")
+                @Html.Password("ConfirmarSenha")
+            </li>
+        </ol>
+        <input type="submit" value="Registrar" />
+    </fieldset>
+}

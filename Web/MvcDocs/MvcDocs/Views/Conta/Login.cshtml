@@ -1,0 +1,39 @@
+﻿<hgroup class="title">
+    <h1>Conta</h1>
+</hgroup>
+<section id="loginForm">
+    <h2>Use seu e-mail e senha para acesso.</h2>
+    @using (Html.BeginForm("Autenticar", "Conta"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Log in Form</legend>
+            <ol>
+                <li>
+                    @Html.Label("Email")
+                    @Html.TextBox("Email")
+                    @*@Html.ValidationMessageFor(m => m.UserName)*@
+                </li>
+                <li>
+                    @Html.Label("Senha")
+                    @Html.Password("Senha")
+                    @*@Html.ValidationMessageFor(m => m.Password)*@
+                </li>
+                <li>
+                    @Html.CheckBox("Lembrar")
+                    @Html.Label("Lembrar-me?", new { @class = "checkbox" })
+                </li>
+            </ol>
+            <input type="submit" value="Log in" />
+        </fieldset>
+
+        <p>@Html.ActionLink("Registre-se", "Registrar") se não possui uma conta.</p>
+    }
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @*@Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })*@
+</section>

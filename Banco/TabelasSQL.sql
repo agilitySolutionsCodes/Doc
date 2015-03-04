@@ -13,14 +13,14 @@ CREATE TABLE usuario
 
 CREATE TABLE senha 
 (
-	entidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY FOREIGN KEY REFERENCES usuario(entidadeID),
+	entidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES usuario(entidadeID),
 	senhaHash VARCHAR(30) NOT NULL,
 	dataModificacao DATE NOT NULL
 )
 
 CREATE TABLE perfil 
 (
-	entidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY FOREIGN KEY REFERENCES usuario(entidadeID),
+	entidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES usuario(entidadeID),
 	nome VARCHAR(30) NOT NULL,
 	dataModificacao DATE NOT NULL
 )
@@ -38,7 +38,7 @@ CREATE TABLE projeto
 
 CREATE TABLE prazo 
 (
-	entidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY FOREIGN KEY REFERENCES projeto(entidadeID),
+	entidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES projeto(entidadeID),
 	horas SMALLINT NOT NULL,
 	classificacao VARCHAR(40),
 	dataModificacao DATE NOT NULL
