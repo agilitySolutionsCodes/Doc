@@ -14,10 +14,9 @@ namespace MvcDocs.Controllers
 {
     public class ContaController : BaseController
     {
-        #region Objetos
+        #region Objetos Criptografia
         TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider();
         MD5CryptoServiceProvider md5Crypto = new MD5CryptoServiceProvider();
-
         //Chave para criptografia
         String Chave = "AgilityWD";
         #endregion
@@ -42,13 +41,12 @@ namespace MvcDocs.Controllers
                 if (usuario.Online == true)
                 {
                     CriaSessionUsuario(usuario);
-                    System.Web.Security.FormsAuthentication.SetAuthCookie(usuario.Nome, false);
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(usuario.SenhaHash + usuario.EntidadeID, false);
                 }
             }
 
             return RedirectToAction("Index", "Home");
         }
-
 
         public ActionResult Registrar()
         {
@@ -133,7 +131,6 @@ namespace MvcDocs.Controllers
 
             return senha;
         }
-
         #endregion
     }
 }

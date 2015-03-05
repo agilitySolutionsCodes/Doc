@@ -7,30 +7,55 @@
     <h2>Criar uma nova conta.</h2>
 </hgroup>
 
-@using (Html.BeginForm("Registrar", "Conta"))
+@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { @class = "FormRegistrar" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-
     <fieldset>
         <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.Label("Nome")
-                @Html.TextBox("Nome")
-
-                @Html.Label("Email")
-                @Html.TextBox("Email")
-            </li>
-            <li>
-                @Html.Label("Senha")
-                @Html.Password("Senha")
-            </li>
-            <li>
-                @Html.Label("Confirmar Senha")
-                @Html.Password("ConfirmarSenha")
-            </li>
-        </ol>
-        <input type="submit" value="Registrar" />
+        <div class="dvFormLeft">
+            <ol>
+                <li>
+                    @Html.Label("Nome", new { @class = "LblForm" })
+                    @Html.TextBox("Nome")
+                </li>
+                <li>
+                    @Html.Label("Email", new { @class = "LblForm" })
+                    @Html.TextBox("Email")
+                </li>
+                <li>
+                    @Html.Label("Senha", new { @class = "LblForm" })
+                    @Html.TextBox("Senha")
+                </li>
+                <li>
+                    @Html.Label("Avatar", new { @class = "LblForm" })
+                    <input type="file" id="InputAvatar" class="inputAvatar" />
+                </li>
+            </ol>
+        </div>
+        <div class="dvFormRight">
+            <ol>
+                <li>
+                    @Html.Label("Sobrenome", new { @class = "LblForm" })
+                    @Html.Password("Sobrenome")
+                </li>
+                <li>
+                    @Html.Label("Data Nascimento", new { @class = "LblForm" })
+                    @Html.Password("DataNascimento")
+                </li>
+                <li>
+                    @Html.Label("Confirmar Senha", new { @class = "LblForm" })
+                    @Html.TextBox("ConfirmacaoSenha")
+                </li>
+                <li>
+                    @Html.Label("Perfil", new { @class = "LblForm" })
+                    <select class="SelectPerfil">
+                        <option>Gerente</option>
+                        <option>Controlador</option>
+                    </select>
+                </li>
+            </ol>
+        </div>
+        <input class="inputSubmit" type="submit" value="Registrar" />
     </fieldset>
 }
