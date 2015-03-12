@@ -29,14 +29,7 @@
                 </li>
                 <li>
                     @Html.Label("Avatar", new { @class = "LblForm" })
-                    <div class="jumbotron">
-                        <form action="~/Conta/UploadAvatar" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
-                            <div class="fallback">
-                                <input name="file" type="file" />
-                                <input type="submit" value="Upload" />
-                            </div>
-                        </form>
-                    </div>
+                    <input name="file" type="file" />
                 </li>
             </ol>
         </div>
