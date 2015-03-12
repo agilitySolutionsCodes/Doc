@@ -24,7 +24,7 @@
 
 .SelectPerfil {
     width: 150px;
-    height: 45px;
+    height: 40px;
     font-size: 1.2em;
 }
 
@@ -37,4 +37,8 @@
     padding: 7px;
     margin-right: 8px;
     width: auto;
+}
+
+.TxtForm {
+    height: 30px;
 }

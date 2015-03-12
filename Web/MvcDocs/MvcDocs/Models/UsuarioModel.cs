@@ -20,10 +20,11 @@ namespace MvcDocs.Models
             Usuario usuario = new Usuario();
             conexao = new Conexao();
             SqlConnection sqlCon = conexao.AbrirConexao();
-            SqlCommand sqlCmd = new SqlCommand("SELECT U.entidadeID, U.nome, U.sobrenome, U.email, U.dataNascimento, U.avatar, S.senhaHash, P.nome as perfil, " + 
-                                               "U.dataModificacao FROM usuario U JOIN senha S ON U.entidadeID = S.entidadeID JOIN perfil P ON U.entidadeID = P.entidadeID " + 
-                                               "WHERE U.email = '" + mEmail + "' AND S.senhaHash = '" + mSenha + "'", sqlCon);
+            SqlCommand sqlCmd = new SqlCommand("stp_AutenticarUsuario", sqlCon);
             sqlCmd.CommandTimeout = sqlCon.ConnectionTimeout;
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.Add(new SqlParameter("@P_Email", mEmail));
+            sqlCmd.Parameters.Add(new SqlParameter("@P_Senha", mSenha));
 
             SqlDataReader dr = sqlCmd.ExecuteReader(CommandBehavior.CloseConnection);
             while (dr.Read())

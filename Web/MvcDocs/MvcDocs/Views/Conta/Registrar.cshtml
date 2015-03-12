@@ -1,13 +1,13 @@
-﻿@{
-    ViewBag.Title = "Registrar";
-}
+﻿@model MvcDocs.Models.Usuario
+@using MvcDocs.Models
+@{ViewBag.Title = "Registrar";}
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
     <h2>Criar uma nova conta.</h2>
 </hgroup>
 
-@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { @class = "FormRegistrar" }))
+@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @class = "FormRegistrar" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -17,19 +17,26 @@
             <ol>
                 <li>
                     @Html.Label("Nome", new { @class = "LblForm" })
-                    @Html.TextBox("Nome")
+                    @Html.TextBox("Nome", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Email", new { @class = "LblForm" })
-                    @Html.TextBox("Email")
+                    @Html.TextBox("Email", "", new { placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Senha", new { @class = "LblForm" })
-                    @Html.TextBox("Senha")
+                    @Html.TextBox("Senha", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Avatar", new { @class = "LblForm" })
-                    <input type="file" id="InputAvatar" class="inputAvatar" />
+                    <div class="jumbotron">
+                        <form action="~/Conta/UploadAvatar" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+                            <div class="fallback">
+                                <input name="file" type="file" />
+                                <input type="submit" value="Upload" />
+                            </div>
+                        </form>
+                    </div>
                 </li>
             </ol>
         </div>
@@ -37,25 +44,55 @@
             <ol>
                 <li>
                     @Html.Label("Sobrenome", new { @class = "LblForm" })
-                    @Html.Password("Sobrenome")
+                    @Html.Password("Sobrenome", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Data Nascimento", new { @class = "LblForm" })
-                    @Html.Password("DataNascimento")
+                    @Html.Password("DataNascimento", "", new { placeholder = "", @required = "", @type = "date", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Confirmar Senha", new { @class = "LblForm" })
-                    @Html.TextBox("ConfirmacaoSenha")
+                    @Html.TextBox("ConfirmacaoSenha", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Perfil", new { @class = "LblForm" })
-                    <select class="SelectPerfil">
-                        <option>Gerente</option>
-                        <option>Controlador</option>
-                    </select>
+                    @Html.DropDownListFor(p => p.PerfilUsuario, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString() }), new { @class = "SelectPerfil" })
                 </li>
             </ol>
         </div>
         <input class="inputSubmit" type="submit" value="Registrar" />
     </fieldset>
+}
+
+@section scripts{
+    <script type="text/javascript">
+        //File Upload response from the server
+        Dropzone.options.dropzoneForm = {
+            maxFiles: 2,
+            init: function () {
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+                });
+                this.on("addedfile", function (file) {
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement("<button>Remove file</button>");
+                    // Capture the Dropzone instance as closure.
+                    var _this = this;
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function (e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Remove the file preview.
+                        _this.removeFile(file);
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
+
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                });
+            }
+        };
+    </script>
 }

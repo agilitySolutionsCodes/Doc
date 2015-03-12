@@ -7,18 +7,17 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-
         <fieldset>
             <legend>Log in Form</legend>
             <ol>
                 <li>
                     @Html.Label("Email")
-                    @Html.TextBox("Email")
+                    @Html.TextBox("Email", "", new { placeholder = "", @required = "", @type = "email", @class = "TxtForm"})
                     @*@Html.ValidationMessageFor(m => m.UserName)*@
                 </li>
                 <li>
                     @Html.Label("Senha")
-                    @Html.Password("Senha")
+                    @Html.Password("Senha", "", new { @class = "TxtForm" })
                     @*@Html.ValidationMessageFor(m => m.Password)*@
                 </li>
                 <li>
@@ -26,7 +25,7 @@
                     @Html.Label("Lembrar-me?", new { @class = "checkbox" })
                 </li>
             </ol>
-            <input type="submit" value="Log in" />
+            <input type="submit" class="inputSubmit" value="Log in" />
         </fieldset>
 
         <p>@Html.ActionLink("Registre-se", "Registrar") se não possui uma conta.</p>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,16 @@ namespace MvcDocs.Models
         private string avatar;
         private string senhaHash;
         private string perfil;
+        public enum Perfis
+        {
+            [Description("Gerente de Projetos")]
+            Gerente,
+            [Description("Controlador de Documentações")]
+            Controlador,
+            [Description("Usuário padrão")]
+            Usuario
+        };
+        private Perfis perfilUsuario;
         private DateTime dataModificacao;
         private bool online;
 
@@ -27,22 +38,9 @@ namespace MvcDocs.Models
         public string Avatar { get { return avatar; } set { avatar = value; } }
         public string SenhaHash { get { return senhaHash; } set { senhaHash = value; } }
         public string Perfil { get { return perfil; } set { perfil = value; } }
+        public Perfis PerfilUsuario { get { return perfilUsuario; } set { perfilUsuario = value; } }
         public DateTime DataModificacao { get { return dataModificacao; } set { dataModificacao = value; } }
         public bool Online { get { return online; } set { online = value; } }
-
-        public Usuario()
-        {
-            this.EntidadeID = 0;
-            this.Nome = "";
-            this.Sobrenome = "";
-            this.Email = "";
-            this.DataNascimento = DateTime.Now;
-            this.Avatar = "";
-            this.SenhaHash = "";
-            this.Perfil = "";
-            this.DataModificacao = DateTime.Now;
-            this.online = false;
-        }
     }
     #endregion 
 }

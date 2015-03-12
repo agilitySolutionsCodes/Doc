@@ -1,77 +1,78 @@
 USE Docs
 
-CREATE TABLE usuario
+CREATE TABLE Usuario
 (
-	entidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	nome VARCHAR(60) NOT NULL,
-	sobrenome VARCHAR(60),
-	email VARCHAR(80) NOT NULL,
-	dataNascimento DATE,
-	avatar VARCHAR(50),
-	dataModificacao DATE NOT NULL
+	EntidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	Nome VARCHAR(60) NOT NULL,
+	Sobrenome VARCHAR(60),
+	Email VARCHAR(80) NOT NULL,
+	DataNascimento DATE,
+	Avatar VARCHAR(50),
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE senha 
+CREATE TABLE Senha 
 (
-	entidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES usuario(entidadeID),
-	senhaHash VARCHAR(30) NOT NULL,
-	dataModificacao DATE NOT NULL
+	EntidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Usuario(EntidadeID),
+	SenhaHash VARCHAR(30) NOT NULL,
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE perfil 
+CREATE TABLE Perfil 
 (
-	entidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES usuario(entidadeID),
-	nome VARCHAR(30) NOT NULL,
-	dataModificacao DATE NOT NULL
+	EntidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Usuario(EntidadeID),
+	Nome VARCHAR(30) NOT NULL,
+	CodigoPerfil CHAR(2) NOT NULL,
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE projeto
+CREATE TABLE Projeto
 (
-	entidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY, 
-	gerenteID INT NOT NULL FOREIGN KEY REFERENCES usuario(entidadeID),
-	nome VARCHAR(80), 
-	dataInicio DATE NOT NULL,
-	dataTermino DATE NOT NULL,
-	statusProjeto BIT NOT NULL,
-	dataModificacao DATE NOT NULL
+	EntidadeID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY, 
+	GerenteID INT NOT NULL FOREIGN KEY REFERENCES Usuario(EntidadeID),
+	Nome VARCHAR(80), 
+	DataInicio DATE NOT NULL,
+	DataTermino DATE NOT NULL,
+	StatusProjeto BIT NOT NULL,
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE prazo 
+CREATE TABLE Prazo 
 (
-	entidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES projeto(entidadeID),
-	horas SMALLINT NOT NULL,
-	classificacao VARCHAR(40),
-	dataModificacao DATE NOT NULL
+	EntidadeID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Projeto(EntidadeID),
+	Horas SMALLINT NOT NULL,
+	Classificacao VARCHAR(40),
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE etapa
+CREATE TABLE Etapa
 (
-	etapaID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	nome VARCHAR(70), 
-	dataInicio DATE NOT NULL,
-	dataTermino DATE NOT NULL,
-	statusEtapa BIT NOT NULL,
-	dataModificacao DATE NOT NULL
+	EtapaID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	Nome VARCHAR(70), 
+	DataInicio DATE NOT NULL,
+	DataTermino DATE NOT NULL,
+	StatusEtapa BIT NOT NULL,
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE projeto_x_etapa
+CREATE TABLE Projeto_x_Etapa
 (
-	projetoEntitdadeID INT NOT NULL FOREIGN KEY REFERENCES projeto(entidadeID),
-	etapaID INT NOT NULL FOREIGN KEY REFERENCES etapa(etapaID)
+	ProjetoEntitdadeID INT NOT NULL FOREIGN KEY REFERENCES Projeto(EntidadeID),
+	EtapaID INT NOT NULL FOREIGN KEY REFERENCES Etapa(EtapaID)
 )
 
-CREATE TABLE documento 
+CREATE TABLE Documento 
 (
-	documentoID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	autorID INT NOT NULL FOREIGN KEY REFERENCES usuario(entidadeID),
-	nome VARCHAR(70) NOT NULL,
-	extensao CHAR(10),
-	dataInclusao DATE NOT NULL,
-	dataModificacao DATE NOT NULL
+	DocumentoID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	AutorID INT NOT NULL FOREIGN KEY REFERENCES usuario(entidadeID),
+	Nome VARCHAR(70) NOT NULL,
+	Extensao CHAR(10),
+	DataInclusao DATE NOT NULL,
+	DataModificacao DATE NOT NULL
 )
 
-CREATE TABLE documento_x_etapa
+CREATE TABLE Documento_x_Etapa
 (
-	documentoID INT NOT NULL FOREIGN KEY REFERENCES documento(documentoID),
-	etapaID INT NOT NULL FOREIGN KEY REFERENCES etapa(etapaID)
+	DocumentoID INT NOT NULL FOREIGN KEY REFERENCES Documento(DocumentoID),
+	EtapaID INT NOT NULL FOREIGN KEY REFERENCES Etapa(EtapaID)
 )

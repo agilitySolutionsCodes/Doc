@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Linq;
 using System.Web.Security;
@@ -32,6 +33,11 @@ namespace MvcDocs.Controllers
             {
                 string cEmail = Fcollection["Email"].ToString();
                 string cSenha = Fcollection["Senha"].ToString();
+                bool cLembrar = false;
+
+                if (Convert.ToBoolean(Fcollection["Lembrar"].Contains("true")))
+                { cLembrar = true; }
+
                 cSenha = CriptografarSenha(cSenha);
 
                 UsuarioModel usuarioModel = new UsuarioModel();
@@ -39,7 +45,7 @@ namespace MvcDocs.Controllers
                 if (usuario.Online == true)
                 {
                     CriaSessionUsuario(usuario);
-                    System.Web.Security.FormsAuthentication.SetAuthCookie(usuario.SenhaHash + usuario.EntidadeID, false);
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(usuario.SenhaHash + usuario.EntidadeID, cLembrar);
                 }
             }
 
@@ -50,10 +56,20 @@ namespace MvcDocs.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult Registrar(FormCollection Fcollection)
         {
+            if (Fcollection != null)
+            {
+                //Upload Arquivo
+                if (Request.Files["file"].ContentLength > 0)
+                {
+                    HttpPostedFileBase arquivo = Request.Files["file"];
+                    UploadAvatar(arquivo);
+                }
+            }
+
             return View();
         }
 
@@ -110,6 +126,13 @@ namespace MvcDocs.Controllers
             senha = Convert.ToBase64String(desdencrypt.TransformFinalBlock(buff, 0, buff.Length));
 
             return senha;
+        }
+
+        protected void UploadAvatar(HttpPostedFileBase arquivo)
+        {
+            var uploadPath = Server.MapPath("~/Content/Uploads");
+            string caminhoArquivo = Path.Combine(@uploadPath, Path.GetFileName(arquivo.FileName));
+            arquivo.SaveAs(caminhoArquivo);
         }
         #endregion
     }
