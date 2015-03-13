@@ -6,9 +6,42 @@
     <h1>@ViewBag.Title.</h1>
     <h2>Criar uma nova conta.</h2>
 </hgroup>
-
+<script src="~/Scripts/dropzone/dropzone.min.js"></script>
 @using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @class = "FormRegistrar" }))
 {
+    @section scripts{
+        <script type="text/javascript">
+            //File Upload response from the server
+            Dropzone.options.dropzoneForm = {
+                maxFiles: 2,
+                init: function () {
+                    this.on("maxfilesexceeded", function (data) {
+                        var res = eval('(' + data.xhr.responseText + ')');
+                    });
+                    this.on("addedfile", function (file) {
+                        // Create the remove button
+                        var removeButton = Dropzone.createElement("<button>Remove file</button>");
+                        // Capture the Dropzone instance as closure.
+                        var _this = this;
+                        // Listen to the click event
+                        removeButton.addEventListener("click", function (e) {
+                            // Make sure the button click doesn't submit the form:
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Remove the file preview.
+                            _this.removeFile(file);
+                            // If you want to the delete the file on the server as well,
+                            // you can do the AJAX request here.
+                        });
+
+                        // Add the button to the file preview element.
+                        file.previewElement.appendChild(removeButton);
+                    });
+                }
+            };
+        </script>
+    }
+    
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     <fieldset>
@@ -55,37 +88,4 @@
         </div>
         <input class="inputSubmit" type="submit" value="Registrar" />
     </fieldset>
-}
-
-@section scripts{
-    <script type="text/javascript">
-        //File Upload response from the server
-        Dropzone.options.dropzoneForm = {
-            maxFiles: 2,
-            init: function () {
-                this.on("maxfilesexceeded", function (data) {
-                    var res = eval('(' + data.xhr.responseText + ')');
-                });
-                this.on("addedfile", function (file) {
-                    // Create the remove button
-                    var removeButton = Dropzone.createElement("<button>Remove file</button>");
-                    // Capture the Dropzone instance as closure.
-                    var _this = this;
-                    // Listen to the click event
-                    removeButton.addEventListener("click", function (e) {
-                        // Make sure the button click doesn't submit the form:
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // Remove the file preview.
-                        _this.removeFile(file);
-                        // If you want to the delete the file on the server as well,
-                        // you can do the AJAX request here.
-                    });
-
-                    // Add the button to the file preview element.
-                    file.previewElement.appendChild(removeButton);
-                });
-            }
-        };
-    </script>
 }

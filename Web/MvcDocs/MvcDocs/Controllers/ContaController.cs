@@ -21,6 +21,11 @@ namespace MvcDocs.Controllers
         #endregion
 
         #region Actions
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Login()
         {
             return View();
