@@ -7,8 +7,13 @@
     <h2>Criar uma nova conta.</h2>
 </hgroup>
 <script src="~/Scripts/dropzone/dropzone.min.js"></script>
-@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @class = "FormRegistrar" }))
-{
+
+
+
+@*@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @class = "FormRegistrar" }))
+{*@
+    
+    
     @section scripts{
         <script type="text/javascript">
             //File Upload response from the server
@@ -78,7 +83,14 @@
                 </li>
                 <li>
                     @Html.Label("Avatar", new { @class = "LblForm" })
-                    <input name="file" type="file" />
+                    <div class="jumbotron">
+                        <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+                            <div class="fallback">
+                                <input name="file" type="file" />
+                                <input type="submit" value="Upload" />
+                            </div>
+                        </form>
+                    </div>
                 </li>
             </ol>
         </div>
@@ -104,4 +116,4 @@
         </div>
         <input class="inputSubmit" type="submit" value="Registrar" />
     </fieldset>
-}
+@*}*@

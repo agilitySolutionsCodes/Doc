@@ -16,7 +16,6 @@
     height: 370px;
 }
 
-
 /*.inputAvatar {
     background-color: transparent;
     height: 25px;
@@ -34,9 +33,9 @@
     cursor: pointer;
     font-size: 1.2em;
     font-weight: 600;
-    padding: 7px;
-    margin-right: 8px;
-    width: auto;
+    /*padding: 7px;
+    margin-right: 8px;*/
+    /*width: 50px;*/
 }
 
 .TxtForm {
