@@ -16,9 +16,9 @@ namespace MvcDocs.Models
         private DateTime dataNascimento;
         private string avatar;
         private string senhaHash;
-        private string perfil;
         public enum Perfis
         {
+            Selecione,
             [Description("Gerente de Projetos")]
             Gerente,
             [Description("Controlador de Documentações")]
@@ -26,7 +26,8 @@ namespace MvcDocs.Models
             [Description("Usuário padrão")]
             Usuario
         };
-        private Perfis perfilUsuario;
+        private Perfis perfil;
+        private string perfilCodigo;
         private DateTime dataModificacao;
         private bool online;
 
@@ -37,10 +38,10 @@ namespace MvcDocs.Models
         public DateTime DataNascimento { get { return dataNascimento; } set { dataNascimento = value; } }
         public string Avatar { get { return avatar; } set { avatar = value; } }
         public string SenhaHash { get { return senhaHash; } set { senhaHash = value; } }
-        public string Perfil { get { return perfil; } set { perfil = value; } }
-        public Perfis PerfilUsuario { get { return perfilUsuario; } set { perfilUsuario = value; } }
+        public Perfis Perfil { get { return perfil; } set { perfil = value; } }
+        public string PerfilCodigo { get { return perfilCodigo; } set { perfilCodigo = value; } }
         public DateTime DataModificacao { get { return dataModificacao; } set { dataModificacao = value; } }
         public bool Online { get { return online; } set { online = value; } }
     }
-    #endregion 
+    #endregion
 }

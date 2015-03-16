@@ -67,6 +67,11 @@ namespace MvcDocs.Controllers
         {
             if (Fcollection != null)
             {
+                //Obj usuário
+                Usuario usuario = CriaUsuario(Fcollection);
+
+                UsuarioModel usuarioModel = new UsuarioModel();
+                usuario = usuarioModel.RegistrarUsuario(usuario);
                 //Upload Arquivo
                 if (Request.Files["file"].ContentLength > 0)
                 {
@@ -131,6 +136,20 @@ namespace MvcDocs.Controllers
             senha = Convert.ToBase64String(desdencrypt.TransformFinalBlock(buff, 0, buff.Length));
 
             return senha;
+        }
+
+        protected Usuario CriaUsuario(FormCollection collection)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Nome = collection["Nome"];
+            usuario.Sobrenome = collection["Sobrenome"];
+            usuario.Email = collection["Email"];
+            usuario.DataNascimento = Convert.ToDateTime(collection["DataNascimento"]);
+            usuario.SenhaHash = CriptografarSenha(collection["ConfirmacaoSenha"]);
+            usuario.Perfil = ((Usuario.Perfis)Convert.ToInt32(collection["Perfil"]));
+            usuario.PerfilCodigo = collection["Perfil"];
+            usuario.Avatar = Request.Files["file"].FileName;
+            return usuario;
         }
 
         protected void UploadAvatar(HttpPostedFileBase arquivo)

@@ -40,6 +40,22 @@
                 }
             };
         </script>
+
+        <script type="text/javascript">
+            var password = document.getElementById("Senha")
+            , confirm_password = document.getElementById("ConfirmacaoSenha");
+
+            function validatePassword() {
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Senhas não correspondem");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+        </script>
     }
     
     @Html.AntiForgeryToken()
@@ -82,7 +98,7 @@
                 </li>
                 <li>
                     @Html.Label("Perfil", new { @class = "LblForm" })
-                    @Html.DropDownListFor(p => p.PerfilUsuario, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString() }), new { @class = "SelectPerfil" })
+                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @class = "SelectPerfil" })
                 </li>
             </ol>
         </div>
