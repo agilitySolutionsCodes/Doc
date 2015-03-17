@@ -18,13 +18,13 @@ namespace MvcDocs.Models
         private string senhaHash;
         public enum Perfis
         {
-            Selecione,
+            //Selecione,
             [Description("Gerente de Projetos")]
-            Gerente,
+            Gerente = 1,
             [Description("Controlador de Documentações")]
-            Controlador,
+            Controlador = 2,
             [Description("Usuário padrão")]
-            Usuario
+            Usuario = 3
         };
         private Perfis perfil;
         private string perfilCodigo;

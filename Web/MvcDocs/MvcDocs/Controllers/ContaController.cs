@@ -40,7 +40,7 @@ namespace MvcDocs.Controllers
                 string cSenha = Fcollection["Senha"].ToString();
                 bool cLembrar = false;
 
-                if (Convert.ToBoolean(Fcollection["Lembrar"].Contains("true")))
+                if (Fcollection["Lembrar"] != null && Convert.ToBoolean(Fcollection["Lembrar"].Contains("true")))
                 { cLembrar = true; }
 
                 cSenha = CriptografarSenha(cSenha);
@@ -69,7 +69,7 @@ namespace MvcDocs.Controllers
             {
                 //Obj usuário
                 Usuario usuario = CriaUsuario(Fcollection);
-
+                //Model
                 UsuarioModel usuarioModel = new UsuarioModel();
                 usuario = usuarioModel.RegistrarUsuario(usuario);
                 //Upload Arquivo
@@ -80,7 +80,7 @@ namespace MvcDocs.Controllers
                 }
             }
 
-            return View();
+            return Autenticar(Fcollection);
         }
 
         public ActionResult Details(int id)

@@ -16,10 +16,10 @@
     height: 370px;
 }
 
-/*.inputAvatar {
+.inputAvatar {
     background-color: transparent;
     height: 25px;
-}*/
+}
 
 .SelectPerfil {
     width: 150px;
@@ -35,7 +35,7 @@
     font-weight: 600;
     /*padding: 7px;
     margin-right: 8px;*/
-    /*width: 50px;*/
+    width: auto;
 }
 
 .TxtForm {

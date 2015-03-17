@@ -8,12 +8,8 @@
 </hgroup>
 <script src="~/Scripts/dropzone/dropzone.min.js"></script>
 
-
-
-@*@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @class = "FormRegistrar" }))
-{*@
-    
-    
+@using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @class = "FormRegistrar" }))
+{
     @section scripts{
         <script type="text/javascript">
             //File Upload response from the server
@@ -62,7 +58,7 @@
             confirm_password.onkeyup = validatePassword;
         </script>
     }
-    
+
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     <fieldset>
@@ -83,14 +79,7 @@
                 </li>
                 <li>
                     @Html.Label("Avatar", new { @class = "LblForm" })
-                    <div class="jumbotron">
-                        <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
-                            <div class="fallback">
-                                <input name="file" type="file" />
-                                <input type="submit" value="Upload" />
-                            </div>
-                        </form>
-                    </div>
+                    <input name="file" type="file" />
                 </li>
             </ol>
         </div>
@@ -110,10 +99,10 @@
                 </li>
                 <li>
                     @Html.Label("Perfil", new { @class = "LblForm" })
-                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @class = "SelectPerfil" })
+                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { placeholder = "", @required = "0", @class = "SelectPerfil" })
                 </li>
             </ol>
         </div>
         <input class="inputSubmit" type="submit" value="Registrar" />
     </fieldset>
-@*}*@
+}
