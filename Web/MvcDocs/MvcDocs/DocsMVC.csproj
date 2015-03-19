@@ -134,17 +134,18 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\Projeto.cs" />
+    <Compile Include="Models\ProjetoModel.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Conta.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -202,25 +203,14 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\dropzone\css\stylus\basic.styl" />
-    <Content Include="Scripts\dropzone\css\stylus\dropzone.styl" />
-    <Content Include="Scripts\dropzone\css\basic.css" />
-    <Content Include="Scripts\dropzone\css\dropzone.css" />
-    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
-    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
-    <Content Include="Scripts\dropzone\dropzone.js" />
-    <Content Include="Scripts\dropzone\dropzone.min.js" />
-    <Content Include="Scripts\dropzone\images\spritemap%402x.png" />
-    <Content Include="Scripts\dropzone\images\spritemap.png" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -228,8 +218,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -245,7 +233,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Conta\Login.cshtml" />
     <Content Include="Views\Conta\Registrar.cshtml" />
-    <Content Include="Views\Conta\Index.cshtml" />
+    <Content Include="Views\Projeto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

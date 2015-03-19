@@ -41,3 +41,8 @@
 .TxtForm {
     height: 30px;
 }
+
+.jumbotron {
+    width: 200px;
+    height: auto;
+}

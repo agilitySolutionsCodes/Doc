@@ -18,7 +18,7 @@ namespace MvcDocs.Models
         private string senhaHash;
         public enum Perfis
         {
-            //Selecione,
+            Selecione,
             [Description("Gerente de Projetos")]
             Gerente = 1,
             [Description("Controlador de Documentações")]

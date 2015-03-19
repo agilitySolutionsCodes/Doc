@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - My ASP.NET MVC Application</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/dropzonescss")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -17,6 +16,7 @@
             </div>
             <div class="float-right">
                 <section id="login">
+                    @Html.ActionLink("Sair", "LogOff", "Conta")
                 </section>
                 <nav>
                     <ul id="menu">
@@ -39,8 +39,6 @@
         </div>
     </footer>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/dropzonescripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

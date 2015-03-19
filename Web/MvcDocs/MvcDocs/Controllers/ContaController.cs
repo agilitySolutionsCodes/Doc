@@ -21,11 +21,6 @@ namespace MvcDocs.Controllers
         #endregion
 
         #region Actions
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Login()
         {
             return View();
@@ -57,6 +52,13 @@ namespace MvcDocs.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult LogOff()
+        {
+            System.Web.Security.FormsAuthentication.SignOut();
+
+            return View("Login");
+        }
+
         public ActionResult Registrar()
         {
             return View();
@@ -76,7 +78,7 @@ namespace MvcDocs.Controllers
                 if (Request.Files["file"].ContentLength > 0)
                 {
                     HttpPostedFileBase arquivo = Request.Files["file"];
-                    UploadAvatar(arquivo);
+                    SaveUploadedFile(arquivo);
                 }
             }
 
@@ -152,11 +154,37 @@ namespace MvcDocs.Controllers
             return usuario;
         }
 
-        protected void UploadAvatar(HttpPostedFileBase arquivo)
+        public ActionResult SaveUploadedFile(HttpPostedFileBase arquivo)
         {
-            var uploadPath = Server.MapPath("~/Content/Uploads");
-            string caminhoArquivo = Path.Combine(@uploadPath, Path.GetFileName(arquivo.FileName));
-            arquivo.SaveAs(caminhoArquivo);
+            bool isSavedSuccessfully = true;
+            string fName = "";
+            foreach (string fileName in Request.Files)
+            {
+                HttpPostedFileBase file = Request.Files[fileName];
+                //Save file content goes here
+                fName = file.FileName;
+                if (file != null && file.ContentLength > 0)
+                {
+                    var originalDirectory = new DirectoryInfo(string.Format("{0}Content\\Uploads", Server.MapPath(@"\")));
+                    string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "Avatar");
+                    var fileName1 = Path.GetFileName(file.FileName);
+
+                    bool isExists = System.IO.Directory.Exists(pathString);
+                    if (!isExists)
+                        System.IO.Directory.CreateDirectory(pathString);
+                    var path = string.Format("{0}\\{1}", pathString, file.FileName);
+                    file.SaveAs(path);
+                }
+            }
+
+            if (isSavedSuccessfully)
+            {
+                return Json(new { Message = fName });
+            }
+            else
+            {
+                return Json(new { Message = "Error in saving file" });
+            }
         }
         #endregion
     }

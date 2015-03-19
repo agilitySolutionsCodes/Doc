@@ -10,7 +10,7 @@ namespace MvcDocs.Models
     #region UsuarioModel
     public class UsuarioModel
     {
-        #region conexao;
+        #region Conexão
         private Conexao conexao;
         #endregion
 
@@ -55,7 +55,7 @@ namespace MvcDocs.Models
             sqlCmd.Parameters.Add(new SqlParameter("@P_Email", usuarioModel.Email));
             sqlCmd.Parameters.Add(new SqlParameter("@P_DataNascimento", usuarioModel.DataNascimento));
             sqlCmd.Parameters.Add(new SqlParameter("@P_Avatar", usuarioModel.Avatar));
-            sqlCmd.Parameters.Add(new SqlParameter("@P_PerfilUsuario", usuarioModel.Perfil));
+            sqlCmd.Parameters.Add(new SqlParameter("@P_PerfilUsuario", usuarioModel.Perfil.ToString()));
             sqlCmd.Parameters.Add(new SqlParameter("@P_PerfilCodigoUsuario", usuarioModel.PerfilCodigo));
             sqlCmd.Parameters.Add(new SqlParameter("@P_SenhaHash", usuarioModel.SenhaHash));
             sqlCmd.Parameters.Add("@P_IdUsuario", SqlDbType.Int).Direction = ParameterDirection.Output;
