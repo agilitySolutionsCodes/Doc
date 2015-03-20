@@ -24,52 +24,50 @@
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
     </script>
-}
-
-@Html.AntiForgeryToken()
-@Html.ValidationSummary()
-<fieldset>
-    <legend>Registration Form</legend>
-    <div class="dvFormLeft">
-        <ol>
-            <li>
-                @Html.Label("Nome", new { @class = "LblForm" })
-                @Html.TextBox("Nome", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
-            </li>
-            <li>
-                @Html.Label("Email", new { @class = "LblForm" })
-                @Html.TextBox("Email", "", new { placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
-            </li>
-            <li>
-                @Html.Label("Senha", new { @class = "LblForm" })
-                @Html.TextBox("Senha", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
-            </li>
-            <li>
-                @Html.Label("Avatar", new { @class = "LblForm" })
-                <input name="file" type="file" />
-            </li>
-        </ol>
-    </div>
-    <div class="dvFormRight">
-        <ol>
-            <li>
-                @Html.Label("Sobrenome", new { @class = "LblForm" })
-                @Html.Password("Sobrenome", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
-            </li>
-            <li>
-                @Html.Label("Data Nascimento", new { @class = "LblForm" })
-                @Html.Password("DataNascimento", "", new { placeholder = "", @required = "", @type = "date", @class = "TxtForm" })
-            </li>
-            <li>
-                @Html.Label("Confirmar Senha", new { @class = "LblForm" })
-                @Html.TextBox("ConfirmacaoSenha", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
-            </li>
-            <li>
-                @Html.Label("Perfil", new { @class = "LblForm" })
-                @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { placeholder = "", @required = "", @class = "SelectPerfil" })
-            </li>
-        </ol>
-    </div>
-    <input class="inputSubmit" type="submit" value="Registrar" />
-</fieldset>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Registration Form</legend>
+        <div class="dvFormLeft">
+            <ol>
+                <li>
+                    @Html.Label("Nome", new { @class = "LblForm" })
+                    @Html.TextBox("Nome", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Email", new { @class = "LblForm" })
+                    @Html.TextBox("Email", "", new { placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Senha", new { @class = "LblForm" })
+                    @Html.TextBox("Senha", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Avatar", new { @class = "LblForm" })
+                    <input name="file" type="file" />
+                </li>
+            </ol>
+        </div>
+        <div class="dvFormRight">
+            <ol>
+                <li>
+                    @Html.Label("Sobrenome", new { @class = "LblForm" })
+                    @Html.Password("Sobrenome", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Data Nascimento", new { @class = "LblForm" })
+                    @Html.Password("DataNascimento", "", new { placeholder = "", @required = "", @type = "date", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Confirmar Senha", new { @class = "LblForm" })
+                    @Html.TextBox("ConfirmacaoSenha", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Perfil", new { @class = "LblForm" })
+                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { placeholder = "", @required = "", @class = "SelectPerfil" })
+                </li>
+            </ol>
+        </div>
+        <input class="inputSubmit" type="submit" value="Registrar" />
+    </fieldset>
 }

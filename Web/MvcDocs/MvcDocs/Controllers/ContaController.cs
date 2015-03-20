@@ -165,7 +165,7 @@ namespace MvcDocs.Controllers
                 fName = file.FileName;
                 if (file != null && file.ContentLength > 0)
                 {
-                    var originalDirectory = new DirectoryInfo(string.Format("{0}Content\\Uploads", Server.MapPath(@"\")));
+                    var originalDirectory = new DirectoryInfo(string.Format("{0}Uploads", Server.MapPath(@"\")));
                     string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "Avatar");
                     var fileName1 = Path.GetFileName(file.FileName);
 
