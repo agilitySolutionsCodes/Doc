@@ -11,7 +11,7 @@ namespace MvcDocs.Models
     public class ProjetoModel
     {
         #region Conexão
-        private Conexao conexao;
+        //private Conexao conexao;
         #endregion
 
         #region Métodos

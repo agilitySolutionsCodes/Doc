@@ -1,5 +1,6 @@
 ﻿@model MvcDocs.Models.Usuario
 @using MvcDocs.Models
+@Scripts.Render("~/Js/Usuario")
 @{ViewBag.Title = "Registrar";}
 
 <hgroup class="title">
@@ -9,21 +10,6 @@
 
 @using (Html.BeginForm("Registrar", "Conta", FormMethod.Post, new { enctype = "multipart/form-data", @id = "FormRegistro", @class = "FormRegistrar" }))
 {
-    <script type="text/javascript">
-        var password = document.getElementById("Senha")
-        , confirm_password = document.getElementById("ConfirmacaoSenha");
-
-        function validatePassword() {
-            if (password.value != confirm_password.value) {
-                confirm_password.setCustomValidity("Senhas não correspondem");
-            } else {
-                confirm_password.setCustomValidity('');
-            }
-        }
-
-        password.onchange = validatePassword;
-        confirm_password.onkeyup = validatePassword;
-    </script>
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     <fieldset>
@@ -64,10 +50,10 @@
                 </li>
                 <li>
                     @Html.Label("Perfil", new { @class = "LblForm" })
-                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { placeholder = "", @required = "", @class = "SelectPerfil" })
+                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @onchange = "ValidaPerfil(this.value)", @class = "SelectPerfil" })
                 </li>
             </ol>
         </div>
-        <input class="inputSubmit" type="submit" value="Registrar" />
+        <input class="inputSubmit" type="submit" value="Registrar" onclick="ValidaPerfil()" />
     </fieldset>
 }

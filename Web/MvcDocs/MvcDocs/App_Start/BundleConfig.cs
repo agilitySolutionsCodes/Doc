@@ -3,10 +3,12 @@ using System.Web.Optimization;
 
 namespace MvcDocs
 {
+    #region Bundle
     public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
+            #region Scripts
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -21,6 +23,20 @@ namespace MvcDocs
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/Js/Usuario").Include(
+                        "~/Js/Usuario.js"));
+
+            bundles.Add(new ScriptBundle("~/Js/Etapa").Include(
+                 "~/Js/Etapa.js"));
+
+            bundles.Add(new ScriptBundle("~/Js/Projeto").Include(
+                 "~/Js/Projeto.js"));
+
+            bundles.Add(new ScriptBundle("~/Js/Documento").Include(
+                 "~/Js/Documento.js"));
+            #endregion
+
+            #region Styles
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/Site.css",
                         "~/Content/Conta.css"));
@@ -38,6 +54,9 @@ namespace MvcDocs
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            #endregion
         }
     }
+    #endregion
 }
