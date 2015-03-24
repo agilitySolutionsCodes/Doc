@@ -132,7 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ContaController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -146,7 +146,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Conta.css" />
+    <Content Include="Content\Account.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -204,10 +204,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Js\Documento.js" />
-    <Content Include="Js\Etapa.js" />
-    <Content Include="Js\Projeto.js" />
-    <Content Include="Js\Usuario.js" />
+    <Content Include="Js\Document.js" />
+    <Content Include="Js\Stage.js" />
+    <Content Include="Js\Project.js" />
+    <Content Include="Js\User.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -235,8 +235,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Conta\Login.cshtml" />
-    <Content Include="Views\Conta\Registrar.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Projeto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

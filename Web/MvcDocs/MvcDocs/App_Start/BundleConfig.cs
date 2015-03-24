@@ -23,23 +23,23 @@ namespace MvcDocs
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/Js/Usuario").Include(
-                        "~/Js/Usuario.js"));
+            bundles.Add(new ScriptBundle("~/Js/User").Include(
+                        "~/Js/User.js"));
 
-            bundles.Add(new ScriptBundle("~/Js/Etapa").Include(
-                 "~/Js/Etapa.js"));
+            bundles.Add(new ScriptBundle("~/Js/Stage").Include(
+                 "~/Js/Stage.js"));
 
-            bundles.Add(new ScriptBundle("~/Js/Projeto").Include(
-                 "~/Js/Projeto.js"));
+            bundles.Add(new ScriptBundle("~/Js/Project").Include(
+                 "~/Js/Project.js"));
 
-            bundles.Add(new ScriptBundle("~/Js/Documento").Include(
-                 "~/Js/Documento.js"));
+            bundles.Add(new ScriptBundle("~/Js/Document").Include(
+                 "~/Js/Document.js"));
             #endregion
 
             #region Styles
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/Site.css",
-                        "~/Content/Conta.css"));
+                        "~/Content/Account.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

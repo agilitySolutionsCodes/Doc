@@ -1,0 +1,33 @@
+﻿<hgroup class="title">
+    <h1>Conta</h1>
+</hgroup>
+@Scripts.Render("~/Js/User")
+<section id="loginForm">
+    <h2>Use seu e-mail e senha para acesso.</h2>
+    @using (Html.BeginForm("AuthenticateUser", "Account"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Log in Form</legend>
+            <ol>
+                <li>
+                    @Html.Label("Email")
+                    @Html.TextBox("Login", "", new { @onblur = "ValidateEmail(this.value)", placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.Label("Senha")
+                    @Html.Password("Password", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
+                </li>
+                <li>
+                    @Html.CheckBox("RemindMe")
+                    @Html.Label("Lembrar-me?", new { @class = "checkbox" })
+                </li>
+            </ol>
+            <input type="submit" class="inputSubmit" value="Log in" onclick="ValidateEmail()" />
+        </fieldset>
+
+        <p>@Html.ActionLink("Registre-se", "Register") se não possui uma conta.</p>
+    }
+</section>
+

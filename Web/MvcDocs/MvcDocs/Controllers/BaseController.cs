@@ -10,30 +10,30 @@ namespace MvcDocs.Controllers
     #region Base Controller
     public class BaseController : Controller
     {
-        #region Cria Seção
-        public void CriaSessionUsuario(Usuario objUsuario)
+        #region Create Session
+        public void CreateUserSession(Usuario ObjUser)
         {
-            System.Web.HttpContext.Current.Session.Add("objUsuario", objUsuario);
+            System.Web.HttpContext.Current.Session.Add("ObjUserSession", ObjUser);
         }
         #endregion
 
-        #region Método Get
-        public Usuario GetUsuarioInfo
+        #region Get Method
+        public Usuario GetUserInfo
         {
             get
             {
-                if (System.Web.HttpContext.Current.Session["objUsuario"] == null || string.IsNullOrEmpty(System.Web.HttpContext.Current.Session["objUsuario"].ToString()))
+                if (System.Web.HttpContext.Current.Session["ObjUserSession"] == null || string.IsNullOrEmpty(System.Web.HttpContext.Current.Session["ObjUserSession"].ToString()))
                 {
-                    return GetUsuarioInfo;
+                    return GetUserInfo;
                 }
 
                 else
                 {
-                    return (Usuario)Session["objUsuario"];
+                    return (Usuario)Session["ObjUserSession"];
                 }
             }
         }
-        #endregion 
+        #endregion
     }
     #endregion
 }

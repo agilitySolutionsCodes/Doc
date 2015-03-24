@@ -11,13 +11,13 @@ using MvcDocs.Models;
 
 namespace MvcDocs.Controllers
 {
-    public class ContaController : BaseController
+    public class AccountController : BaseController
     {
-        #region Objetos Criptografia
+        #region Objects Crypto
         TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider();
         MD5CryptoServiceProvider md5Crypto = new MD5CryptoServiceProvider();
-        //Chave para criptografia
-        String Chave = "AgilityWD";
+        //Key
+        String Key = "AgilityWD";
         #endregion
 
         #region Actions
@@ -27,25 +27,25 @@ namespace MvcDocs.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autenticar(FormCollection Fcollection)
+        public ActionResult AuthenticateUser(FormCollection Fcollection)
         {
-            if (Fcollection["Email"] != null && Fcollection["Senha"] != null)
+            if (Fcollection["Login"] != null && Fcollection["Password"] != null)
             {
-                string cEmail = Fcollection["Email"].ToString();
-                string cSenha = Fcollection["Senha"].ToString();
-                bool cLembrar = false;
+                string cEmail = Fcollection["Login"].ToString();
+                string cPassword = Fcollection["Password"].ToString();
+                bool cRemindMe = false;
 
-                if (Fcollection["Lembrar"] != null && Convert.ToBoolean(Fcollection["Lembrar"].Contains("true")))
-                { cLembrar = true; }
+                if (Fcollection["RemindMe"] != null && Convert.ToBoolean(Fcollection["RemindMe"].Contains("true")))
+                { cRemindMe = true; }
 
-                cSenha = CriptografarSenha(cSenha);
+                cPassword = CryptographyPassword(cPassword);
 
-                UsuarioModel usuarioModel = new UsuarioModel();
-                Usuario usuario = usuarioModel.AutenticaUsuario(cEmail, cSenha);
-                if (usuario.Online == true)
+                UsuarioModel ObjUserModel = new UsuarioModel();
+                Usuario ObjUser = ObjUserModel.AutenticaUsuario(cEmail, cPassword);
+                if (ObjUser.Online == true)
                 {
-                    CriaSessionUsuario(usuario);
-                    System.Web.Security.FormsAuthentication.SetAuthCookie(usuario.SenhaHash + usuario.EntidadeID, cLembrar);
+                    CreateUserSession(ObjUser);
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(ObjUser.SenhaHash + ObjUser.EntidadeID, cRemindMe);
                 }
             }
 
@@ -59,30 +59,30 @@ namespace MvcDocs.Controllers
             return View("Login");
         }
 
-        public ActionResult Registrar()
+        public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Registrar(FormCollection Fcollection)
+        public ActionResult Register(FormCollection Fcollection)
         {
             if (Fcollection != null)
             {
-                //Obj usuário
-                Usuario usuario = CriaUsuario(Fcollection);
-                //Model
-                UsuarioModel usuarioModel = new UsuarioModel();
-                usuario = usuarioModel.RegistrarUsuario(usuario);
-                //Upload Arquivo
+                //Create new object user
+                Usuario ObjUser = CreateUser(Fcollection);
+                //New object Model
+                UsuarioModel ObjUserModel = new UsuarioModel();
+                ObjUser = ObjUserModel.RegistrarUsuario(ObjUser);
+                //Upload File
                 if (Request.Files["file"].ContentLength > 0)
                 {
-                    HttpPostedFileBase arquivo = Request.Files["file"];
-                    SaveUploadedFile(arquivo);
+                    HttpPostedFileBase ObjFile = Request.Files["file"];
+                    SaveUploadedFile(ObjFile);
                 }
             }
 
-            return Autenticar(Fcollection);
+            return AuthenticateUser(Fcollection);
         }
 
         public ActionResult Details(int id)
@@ -127,59 +127,59 @@ namespace MvcDocs.Controllers
         }
         #endregion
 
-        #region Métodos
-        protected String CriptografarSenha(string senha)
+        #region Methods
+        protected String CryptographyPassword(string password)
         {
-            des.Key = md5Crypto.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Chave));
+            des.Key = md5Crypto.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Key));
             des.Mode = CipherMode.ECB;
             ICryptoTransform desdencrypt = des.CreateEncryptor();
             ASCIIEncoding MyASCIIEncoding = new ASCIIEncoding();
-            var buff = ASCIIEncoding.ASCII.GetBytes(senha);
-            senha = Convert.ToBase64String(desdencrypt.TransformFinalBlock(buff, 0, buff.Length));
+            var buff = ASCIIEncoding.ASCII.GetBytes(password);
+            password = Convert.ToBase64String(desdencrypt.TransformFinalBlock(buff, 0, buff.Length));
 
-            return senha;
+            return password;
         }
 
-        protected Usuario CriaUsuario(FormCollection collection)
+        protected Usuario CreateUser(FormCollection collection)
         {
             Usuario usuario = new Usuario();
-            usuario.Nome = collection["Nome"];
-            usuario.Sobrenome = collection["Sobrenome"];
-            usuario.Email = collection["Email"];
-            usuario.DataNascimento = Convert.ToDateTime(collection["DataNascimento"]);
-            usuario.SenhaHash = CriptografarSenha(collection["ConfirmacaoSenha"]);
-            usuario.Perfil = ((Usuario.Perfis)Convert.ToInt32(collection["Perfil"]));
+            usuario.Nome = collection["Name"];
+            usuario.Sobrenome = collection["LastName"];
+            usuario.Email = collection["Login"];
+            usuario.DataNascimento = Convert.ToDateTime(collection["BirthDate"]);
+            usuario.SenhaHash = CryptographyPassword(collection["ConfirmPassword"]);
+            usuario.Perfil = ((Usuario.Perfis)Convert.ToInt32(collection["Profile"]));
             usuario.PerfilCodigo = collection["Perfil"];
-            usuario.Avatar = Request.Files["file"].FileName;
+            usuario.Avatar = Request.Files["File"].FileName;
             return usuario;
         }
 
-        public ActionResult SaveUploadedFile(HttpPostedFileBase arquivo)
+        public ActionResult SaveUploadedFile(HttpPostedFileBase file)
         {
             bool isSavedSuccessfully = true;
-            string fName = "";
+            string sFileName = "";
             foreach (string fileName in Request.Files)
             {
-                HttpPostedFileBase file = Request.Files[fileName];
+                HttpPostedFileBase Objfile = Request.Files[fileName];
                 //Save file content goes here
-                fName = file.FileName;
-                if (file != null && file.ContentLength > 0)
+                sFileName = Objfile.FileName;
+                if (Objfile != null && Objfile.ContentLength > 0)
                 {
                     var originalDirectory = new DirectoryInfo(string.Format("{0}Uploads", Server.MapPath(@"\")));
                     string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "Avatar");
-                    var fileName1 = Path.GetFileName(file.FileName);
+                    var fileNameOne = Path.GetFileName(Objfile.FileName);
 
                     bool isExists = System.IO.Directory.Exists(pathString);
                     if (!isExists)
                         System.IO.Directory.CreateDirectory(pathString);
-                    var path = string.Format("{0}\\{1}", pathString, file.FileName);
-                    file.SaveAs(path);
+                    var path = string.Format("{0}\\{1}", pathString, Objfile.FileName);
+                    Objfile.SaveAs(path);
                 }
             }
 
             if (isSavedSuccessfully)
             {
-                return Json(new { Message = fName });
+                return Json(new { Message = sFileName });
             }
             else
             {
