@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace MvcDocs.Controllers
 {
-    #region Projeto Controller
+    #region Project Controller
     [Authorize]
-    public class ProjetoController : Controller
+    public class ProjectController : Controller
     {
         #region Actions
         public ActionResult Index()

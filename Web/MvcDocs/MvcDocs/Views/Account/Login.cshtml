@@ -13,7 +13,7 @@
             <ol>
                 <li>
                     @Html.Label("Email")
-                    @Html.TextBox("Login", "", new { @onblur = "ValidateEmail(this.value)", placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
+                    @Html.TextBox("Login", "", new { @onkeyup = "validateEmail(this.value)", placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
                 </li>
                 <li>
                     @Html.Label("Senha")
@@ -24,7 +24,7 @@
                     @Html.Label("Lembrar-me?", new { @class = "checkbox" })
                 </li>
             </ol>
-            <input type="submit" class="inputSubmit" value="Log in" onclick="ValidateEmail()" />
+            <input type="submit" class="inputSubmit" value="Log in" onclick="validateEmail()" />
         </fieldset>
 
         <p>@Html.ActionLink("Registre-se", "Register") se não possui uma conta.</p>

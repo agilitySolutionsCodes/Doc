@@ -11,14 +11,14 @@ namespace MvcDocs.Controllers
     public class BaseController : Controller
     {
         #region Create Session
-        public void CreateUserSession(Usuario ObjUser)
+        public void CreateUserSession(User ObjUser)
         {
             System.Web.HttpContext.Current.Session.Add("ObjUserSession", ObjUser);
         }
         #endregion
 
         #region Get Method
-        public Usuario GetUserInfo
+        public User GetUserInfo
         {
             get
             {
@@ -29,7 +29,7 @@ namespace MvcDocs.Controllers
 
                 else
                 {
-                    return (Usuario)Session["ObjUserSession"];
+                    return (User)Session["ObjUserSession"];
                 }
             }
         }

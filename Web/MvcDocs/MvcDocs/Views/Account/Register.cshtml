@@ -1,4 +1,4 @@
-﻿@model MvcDocs.Models.Usuario
+﻿@model MvcDocs.Models.User
 @using MvcDocs.Models
 @Scripts.Render("~/Js/User")
 @{ViewBag.Title = "Registrar";}
@@ -29,7 +29,7 @@
                     @Html.TextBox("Password", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
                 </li>
                 <li>
-                    @Html.Label("LabelAvatar", new { @class = "LblForm" })
+                    @Html.Label("Avatar", new { @class = "LblForm" })
                     <input name="File" type="file" />
                 </li>
             </ol>
@@ -50,7 +50,7 @@
                 </li>
                 <li>
                     @Html.Label("Perfil", new { @class = "LblForm" })
-                    @Html.DropDownListFor(p => p.Perfil, Enum.GetValues(typeof(MvcDocs.Models.Usuario.Perfis)).Cast<MvcDocs.Models.Usuario.Perfis>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @onchange = "ValidateProfile(this.value)", @class = "SelectPerfil" })
+                    @Html.DropDownListFor(p => p.Profile, Enum.GetValues(typeof(MvcDocs.Models.User.Profiles)).Cast<MvcDocs.Models.User.Profiles>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @onchange = "ValidateProfile(this.value)", @class = "SelectPerfil" })
                 </li>
             </ol>
         </div>

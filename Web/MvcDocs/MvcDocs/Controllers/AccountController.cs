@@ -40,12 +40,12 @@ namespace MvcDocs.Controllers
 
                 cPassword = CryptographyPassword(cPassword);
 
-                UsuarioModel ObjUserModel = new UsuarioModel();
-                Usuario ObjUser = ObjUserModel.AutenticaUsuario(cEmail, cPassword);
+                UserModel ObjUserModel = new UserModel();
+                User ObjUser = ObjUserModel.modelAuthenticateUser(cEmail, cPassword);
                 if (ObjUser.Online == true)
                 {
                     CreateUserSession(ObjUser);
-                    System.Web.Security.FormsAuthentication.SetAuthCookie(ObjUser.SenhaHash + ObjUser.EntidadeID, cRemindMe);
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(ObjUser.PasswordHash + ObjUser.EntityID, cRemindMe);
                 }
             }
 
@@ -70,10 +70,10 @@ namespace MvcDocs.Controllers
             if (Fcollection != null)
             {
                 //Create new object user
-                Usuario ObjUser = CreateUser(Fcollection);
+                User ObjUser = CreateUser(Fcollection);
                 //New object Model
-                UsuarioModel ObjUserModel = new UsuarioModel();
-                ObjUser = ObjUserModel.RegistrarUsuario(ObjUser);
+                UserModel ObjUserModel = new UserModel();
+                ObjUser = ObjUserModel.modelRegisterUser(ObjUser);
                 //Upload File
                 if (Request.Files["file"].ContentLength > 0)
                 {
@@ -140,18 +140,27 @@ namespace MvcDocs.Controllers
             return password;
         }
 
-        protected Usuario CreateUser(FormCollection collection)
+        protected User CreateUser(FormCollection collection)
         {
-            Usuario usuario = new Usuario();
-            usuario.Nome = collection["Name"];
-            usuario.Sobrenome = collection["LastName"];
-            usuario.Email = collection["Login"];
-            usuario.DataNascimento = Convert.ToDateTime(collection["BirthDate"]);
-            usuario.SenhaHash = CryptographyPassword(collection["ConfirmPassword"]);
-            usuario.Perfil = ((Usuario.Perfis)Convert.ToInt32(collection["Profile"]));
-            usuario.PerfilCodigo = collection["Perfil"];
-            usuario.Avatar = Request.Files["File"].FileName;
-            return usuario;
+            User user = new User();
+            user.Name = collection["Name"];
+            user.LastName = collection["LastName"];
+            user.Email = collection["Login"];
+            user.BirthDate = Convert.ToDateTime(collection["BirthDate"]);
+            user.PasswordHash = CryptographyPassword(collection["ConfirmPassword"]);
+            user.Profile = ((User.Profiles)Convert.ToInt32(collection["Profile"]));
+            user.ProfileCode = collection["Perfil"];
+            user.Avatar = Request.Files["File"].FileName;
+            return user;
+        }
+
+        public JsonResult CheckEmailExist(string cEmail)
+        {
+            bool cOk = false;
+            UserModel userModel = new UserModel();
+            cOk = userModel.modelCheckEmailsExists(cEmail);
+
+            return Json(cOk);
         }
 
         public ActionResult SaveUploadedFile(HttpPostedFileBase file)

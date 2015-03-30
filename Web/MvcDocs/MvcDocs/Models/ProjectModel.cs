@@ -8,13 +8,13 @@ using System.Web;
 namespace MvcDocs.Models
 {
     #region Projeto Model
-    public class ProjetoModel
+    public class ProjectModel
     {
-        #region Conexão
-        //private Conexao conexao;
+        #region Connection
+        //private Connection connection;
         #endregion
 
-        #region Métodos
+        #region Methods
 
         #endregion
     }

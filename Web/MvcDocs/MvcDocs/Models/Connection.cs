@@ -8,34 +8,34 @@ using System.Web;
 
 namespace MvcDocs.Models
 {
-    #region Conexao
-    public class Conexao
+    #region Connection
+    public class Connection
     {
         #region connection
-        private SqlConnection conexao;
+        private SqlConnection connection;
         #endregion
 
-        #region Construtor
-        public Conexao()
+        #region Constructor
+        public Connection()
         {
             AppSettingsReader oSettingsReader = new AppSettingsReader();
-            string sAmbiente = oSettingsReader.GetValue("Ambiente", typeof(String)).ToString();
-            conexao = new SqlConnection(ConfigurationManager.ConnectionStrings[sAmbiente].ConnectionString);
+            string sEnvironment = oSettingsReader.GetValue("Environment", typeof(String)).ToString();
+            connection = new SqlConnection(ConfigurationManager.ConnectionStrings[sEnvironment].ConnectionString);
         }
         #endregion
 
-        #region Abrir Conexão
-        public SqlConnection AbrirConexao()
+        #region Open Connection
+        public SqlConnection OpenConnection()
         {
             try
             {
-                if (conexao.State == ConnectionState.Broken || conexao.State == ConnectionState.Closed)
+                if (connection.State == ConnectionState.Broken || connection.State == ConnectionState.Closed)
                 {
-                    conexao.Open();
+                    connection.Open();
                 }
                 else
                 {
-                    conexao.Close();
+                    connection.Close();
                 }
             }
 
@@ -49,7 +49,7 @@ namespace MvcDocs.Models
                 throw ex;
             }
 
-            return conexao;
+            return connection;
         }
         #endregion
     }
