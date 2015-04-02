@@ -1,4 +1,4 @@
-﻿.FormRegistrar {
+﻿.formRegister {
     width: 800px;
     height: 380px;
 }
@@ -21,7 +21,7 @@
     height: 25px;
 }
 
-.SelectPerfil {
+.selectProfile {
     width: 150px;
     height: 40px;
     font-size: 1.2em;
@@ -38,7 +38,7 @@
     width: auto;
 }
 
-.TxtForm {
+.txtForm {
     height: 30px;
 }
 

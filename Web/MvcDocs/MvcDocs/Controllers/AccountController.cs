@@ -11,6 +11,7 @@ using MvcDocs.Models;
 
 namespace MvcDocs.Controllers
 {
+    #region AccountController
     public class AccountController : BaseController
     {
         #region Objects Crypto
@@ -27,8 +28,9 @@ namespace MvcDocs.Controllers
         }
 
         [HttpPost]
-        public ActionResult AuthenticateUser(FormCollection Fcollection)
+        public JsonResult AuthenticateUser(FormCollection Fcollection)
         {
+            User ObjUser = new User();
             if (Fcollection["Login"] != null && Fcollection["Password"] != null)
             {
                 string cEmail = Fcollection["Login"].ToString();
@@ -41,7 +43,8 @@ namespace MvcDocs.Controllers
                 cPassword = CryptographyPassword(cPassword);
 
                 UserModel ObjUserModel = new UserModel();
-                User ObjUser = ObjUserModel.modelAuthenticateUser(cEmail, cPassword);
+
+                ObjUser = ObjUserModel.modelAuthenticateUser(cEmail, cPassword);
                 if (ObjUser.Online == true)
                 {
                     CreateUserSession(ObjUser);
@@ -49,7 +52,11 @@ namespace MvcDocs.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            RedirectToRoute("Authenticate");
+            return Json(ObjUser.Online);
+            
+            //return RedirectToRoute("Authenticate");
+            //return RedirectToAction("Index", "Home");
         }
 
         public ActionResult LogOff()
@@ -145,7 +152,7 @@ namespace MvcDocs.Controllers
             User user = new User();
             user.Name = collection["Name"];
             user.LastName = collection["LastName"];
-            user.Email = collection["Login"];
+            user.Email = collection["Email"];
             user.BirthDate = Convert.ToDateTime(collection["BirthDate"]);
             user.PasswordHash = CryptographyPassword(collection["ConfirmPassword"]);
             user.Profile = ((User.Profiles)Convert.ToInt32(collection["Profile"]));
@@ -197,4 +204,5 @@ namespace MvcDocs.Controllers
         }
         #endregion
     }
+    #endregion
 }

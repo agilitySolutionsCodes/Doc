@@ -25,5 +25,6 @@ C:\Codes\Doc\Web\MvcDocs\MvcDocs\bin\System.Web.Razor.xml
 C:\Codes\Doc\Web\MvcDocs\MvcDocs\bin\System.Web.WebPages.xml
 C:\Codes\Doc\Web\MvcDocs\MvcDocs\bin\System.Web.WebPages.Deployment.xml
 C:\Codes\Doc\Web\MvcDocs\MvcDocs\bin\System.Web.WebPages.Razor.xml
+C:\Codes\Doc\Web\MvcDocs\MvcDocs\obj\Debug\DocsMVC.csprojResolveAssemblyReference.cache
 C:\Codes\Doc\Web\MvcDocs\MvcDocs\obj\Debug\MvcDocs.dll
 C:\Codes\Doc\Web\MvcDocs\MvcDocs\obj\Debug\MvcDocs.pdb

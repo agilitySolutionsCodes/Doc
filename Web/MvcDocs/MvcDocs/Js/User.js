@@ -1,38 +1,74 @@
 ﻿//Account Login 
-function validateEmail(emailAdress) {
-    var objEmail = document.getElementById("Login");
-    regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (regex.test(objEmail.value)) {
-        
+function validateEmailAuthenticate(emailAdressL) {
+    var objEmailL = document.getElementById("Login");
+    regexL = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        checkEmailExists(objEmail.value);
-    }
-    else {
-        objEmail.setCustomValidity("Informe um E-mail válido");
+    if (!regexL.test(objEmailL.value)) {
+        objEmailL.setCustomValidity("Informe um E-mail válido");
         return false;
     }
+    else {
+        checkEmailExistsAuthenticate(objEmailL.value);
+    }
 }
-
-function checkEmailExists(email) {
+function checkEmailExistsAuthenticate(emailAdressL) {
     $.ajax({
         type: "POST",
         url: "Account/CheckEmailExist/",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
-        data: '{"cEmail":"' + email + '"}',
-        success: callBackCheckEmail
+        data: '{"cEmail":"' + emailAdressL + '"}',
+        success: callBackCheckEmailAuthenticate
     });
 }
-
-function callBackCheckEmail(data) {
+function callBackCheckEmailAuthenticate(data) {
+    var objEmailAuthenticate = document.getElementById("Login");
     if (!data) {
-        objEmail = document.getElementById("Login");
-        objEmail.setCustomValidity("Ops esse e-mail não foi localizado.");
+        objEmailAuthenticate.setCustomValidity("Ops esse e-mail não foi localizado.");
+        return false;
+    }
+    else {
+        objEmailAuthenticate.setCustomValidity("");
+        return true;
     }
 }
 
+//Account Register
+function validateEmailRegister(emailAdressR) {
+    var objEmailR = document.getElementById("Email");
+    regexR = /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2}/;
+
+    if (!regexR.test(emailAdressR)) {
+        objEmailR.setCustomValidity("Informe um E-mail válido");
+        return false;
+    }
+    else {
+        checkEmailExists(objEmailR.value);
+    }
+}
+function checkEmailExistsRegister(emailAdressR) {
+    $.ajax({
+        type: "POST",
+        url: "Account/CheckEmailExist/",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        data: '{"cEmail":"' + emailAdressR + '"}',
+        success: callBackCheckEmail
+    });
+}
+function callBackCheckEmailRegister(data) {
+    var objEmailRegister = document.getElementById("Login");
+    if (data) {
+        objEmailRegister.setCustomValidity("Ops esse e-mail já existe.");
+        return false;
+    }
+    else {
+        objEmailRegister.setCustomValidity("");
+        return true;
+    }
+}
 function validateProfile() {
-    var obj = document.getElementById("Perfil");
+    var obj = document.getElementById("Profile");
     var v = obj.value;
     if (v == 0) {
         obj.setCustomValidity("Selecione um Perfil");

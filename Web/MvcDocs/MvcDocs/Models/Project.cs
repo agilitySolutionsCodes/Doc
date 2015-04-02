@@ -8,21 +8,27 @@ namespace MvcDocs.Models
     #region Project
     public class Project
     {
-        private int entidadeID;
-        private int gerenteID;
-        private string gerenteNome;
-        private string nomeProjeto;
-        private string statusProjeto;
-        private int horas;
-        private DateTime dataModificacao;
+        private int entityID;
+        private int managerID;
+        private string managerName;
+        private string projectName;
+        private DateTime startDate;
+        private DateTime endDate;
+        private string projectStatus;
+        private int hours;
+        private string classification;
+        private DateTime modifiedDate;
 
-        public int EntidadeID { get { return entidadeID; } set { entidadeID = value; } }
-        public int GerenteID { get { return gerenteID; } set { gerenteID = value; } }
-        public string GerenteNome { get { return gerenteNome; } set { gerenteNome = value; } }
-        public string NomeProjeto { get { return nomeProjeto; } set { nomeProjeto = value; } }
-        public string StatusProjeto { get { return statusProjeto; } set { statusProjeto = value; } }
-        public int Horas { get { return horas; } set { horas = value; } }
-        public DateTime DataModificacao { get { return dataModificacao; } set { dataModificacao = value; } }
+        public int EntityID { get { return entityID; } set { entityID = value; } }
+        public int ManagerID { get { return managerID; } set { managerID = value; } }
+        public string ManagerName { get { return managerName; } set { managerName = value; } }
+        public string ProjectName { get { return projectName; } set { projectName = value; } }
+        public DateTime StartDate{ get { return startDate; } set { startDate = value; } }
+        public DateTime EndDate { get { return endDate; } set { endDate = value; } }
+        public string ProjectStatus { get { return projectStatus; } set { projectStatus = value; } }
+        public int Hours { get { return hours; } set { hours = value; } }
+        public string Classification { get { return classification; } set { classification = value; } }
+        public DateTime ModifiedDate { get { return modifiedDate; } set { modifiedDate = value; } }
     }
     #endregion
 }

@@ -8,7 +8,7 @@
     <h2>Criar uma nova conta.</h2>
 </hgroup>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "FormRegistro", @class = "FormRegistrar" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "FormRegister", @class = "formRegister" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -18,15 +18,15 @@
             <ol>
                 <li>
                     @Html.Label("Nome", new { @class = "LblForm" })
-                    @Html.TextBox("Name", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
+                    @Html.TextBox("Name", "", new { placeholder = "", @required = "", @type = "text", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Email", new { @class = "LblForm" })
-                    @Html.TextBox("Login", "", new { placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
+                    @Html.TextBox("Email", "", new { placeholder = "", @required = "", @type = "email", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Senha", new { @class = "LblForm" })
-                    @Html.TextBox("Password", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
+                    @Html.TextBox("Password", "", new { placeholder = "", @required = "", @type = "password", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Avatar", new { @class = "LblForm" })
@@ -38,19 +38,19 @@
             <ol>
                 <li>
                     @Html.Label("Sobrenome", new { @class = "LblForm" })
-                    @Html.Password("LastName", "", new { placeholder = "", @required = "", @type = "text", @class = "TxtForm" })
+                    @Html.Password("LastName", "", new { @placeholder = "", @required = "", @type = "text", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Data Nascimento", new { @class = "LblForm" })
-                    @Html.Password("BirthDate", "", new { placeholder = "", @required = "", @type = "date", @class = "TxtForm" })
+                    @Html.Password("BirthDate", "", new { placeholder = "", @required = "", @type = "date", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Confirma Senha", new { @class = "LblForm" })
-                    @Html.TextBox("ConfirmPassword", "", new { placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
+                    @Html.TextBox("ConfirmPassword", "", new { @placeholder = "", @required = "", @type = "password", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Perfil", new { @class = "LblForm" })
-                    @Html.DropDownListFor(p => p.Profile, Enum.GetValues(typeof(MvcDocs.Models.User.Profiles)).Cast<MvcDocs.Models.User.Profiles>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @onchange = "ValidateProfile(this.value)", @class = "SelectPerfil" })
+                    @Html.DropDownListFor(p => p.Profile, Enum.GetValues(typeof(MvcDocs.Models.User.Profiles)).Cast<MvcDocs.Models.User.Profiles>().Select(c => new SelectListItem { Text = c.ToString(), Value = ((int)c).ToString() }), new { @onchange = "ValidateProfile(this.value)", @class = "selectProfile" })
                 </li>
             </ol>
         </div>

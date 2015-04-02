@@ -19,6 +19,12 @@ namespace MvcDocs
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Authenticate",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Account", action = "AuthenticateUser", id = UrlParameter.Optional }
+                );
         }
     }
     #endregion
