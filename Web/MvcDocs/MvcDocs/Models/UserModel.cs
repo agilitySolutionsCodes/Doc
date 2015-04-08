@@ -30,7 +30,7 @@ namespace MvcDocs.Models
             while (dr.Read())
             {
                 user.EntityID = Convert.ToInt32(dr["EntityID"]);
-                user.Name = dr["Name"].ToString();
+                user.FirstName = dr["FirstName"].ToString();
                 user.LastName = dr["LastName"].ToString();
                 user.Email = dr["Email"].ToString();
                 user.BirthDate = Convert.ToDateTime(dr["BirthDate"]);
@@ -50,7 +50,7 @@ namespace MvcDocs.Models
             SqlCommand sqlCmd = new SqlCommand("stp_RegisterUser", sqlCon);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.CommandTimeout = sqlCon.ConnectionTimeout;
-            sqlCmd.Parameters.Add(new SqlParameter("@p_Name", userModel.Name));
+            sqlCmd.Parameters.Add(new SqlParameter("@p_FirstName", userModel.FirstName));
             sqlCmd.Parameters.Add(new SqlParameter("@p_LastName", userModel.LastName));
             sqlCmd.Parameters.Add(new SqlParameter("@p_Email", userModel.Email));
             sqlCmd.Parameters.Add(new SqlParameter("@p_BirthDate", userModel.BirthDate));

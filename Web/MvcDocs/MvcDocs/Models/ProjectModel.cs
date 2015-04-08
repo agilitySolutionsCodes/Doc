@@ -25,7 +25,7 @@ namespace MvcDocs.Models
             sqlCmd.CommandTimeout = sqlCon.ConnectionTimeout;
 
             sqlCmd.Parameters.Add(new SqlParameter("@p_ManagerID", projectModel.ManagerID));
-            sqlCmd.Parameters.Add(new SqlParameter("@p_ProjectName", projectModel.ProjectName);
+            sqlCmd.Parameters.Add(new SqlParameter("@p_ProjectName", projectModel.ProjectName));
             sqlCmd.Parameters.Add(new SqlParameter("@p_StartDate", projectModel.StartDate));
             sqlCmd.Parameters.Add(new SqlParameter("@p_EndDate", projectModel.EndDate));
             sqlCmd.Parameters.Add(new SqlParameter("@p_ProjectStatus", projectModel.ProjectStatus));

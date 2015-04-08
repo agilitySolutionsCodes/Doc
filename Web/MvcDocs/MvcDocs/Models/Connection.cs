@@ -18,8 +18,8 @@ namespace MvcDocs.Models
         #region Constructor
         public Connection()
         {
-            AppSettingsReader oSettingsReader = new AppSettingsReader();
-            string sEnvironment = oSettingsReader.GetValue("Environment", typeof(String)).ToString();
+            AppSettingsReader objSettingsReader = new AppSettingsReader();
+            string sEnvironment = objSettingsReader.GetValue("Environment", typeof(String)).ToString();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings[sEnvironment].ConnectionString);
         }
         #endregion

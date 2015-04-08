@@ -10,7 +10,7 @@ namespace MvcDocs.Models
     public class User
     {
         private int entityID;
-        private string name;
+        private string firstName;
         private string lastName;
         private string email;
         private DateTime birthDate;
@@ -32,7 +32,7 @@ namespace MvcDocs.Models
         private bool online;
 
         public int EntityID { get { return entityID; } set { entityID = value; } }
-        public string Name { get { return name; } set { name = value; } }
+        public string FirstName { get { return firstName; } set { firstName = value; } }
         public string LastName { get { return lastName; } set { lastName = value; } }
         public string Email { get { return email; } set { email = value; } }
         public DateTime BirthDate { get { return birthDate; } set { birthDate = value; } }

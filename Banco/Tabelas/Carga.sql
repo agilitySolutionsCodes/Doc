@@ -1,15 +1,15 @@
-INSERT INTO Usuario
+INSERT INTO Person
 VALUES
 (
 	'Yule', 'Souza', 'yule.souza@agilitysolutions.com.br', GETDATE(), 'Y.jpg', GETDATE()
 )
-INSERT INTO Perfil
+INSERT INTO PersonProfile
 VALUES(
 	1, 'Gerente', 'G', GETDATE()
 )
 
-INSERT INTO Senha
+INSERT INTO PersonPassword
 VALUES(
- 	1, 'Ldp6jRqNzk0= ', GETDATE()	
+ 	1, 'VbNXZMsBD7I9KEkiD03hvA==', GETDATE()	
 )
 

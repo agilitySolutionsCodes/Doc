@@ -14,11 +14,11 @@
             <ol>
                 <li>
                     @Html.Label("Email")
-                    @Html.TextBox("Login", "", new { @onkeyup = "validateEmailAuthenticate(this.value)", @placeholder = "", @required = "", @type = "email", @class = "TxtForm" })
+                    @Html.TextBox("Login", "", new { @onchange = "validateEmailAuthenticate(this.value)", @placeholder = "", @required = "", @type = "email", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.Label("Senha")
-                    @Html.Password("Password", "", new { @placeholder = "", @required = "", @type = "password", @class = "TxtForm" })
+                    @Html.Password("Password", "", new { @placeholder = "", @required = "", @type = "password", @class = "txtForm" })
                 </li>
                 <li>
                     @Html.CheckBox("RemindMe")

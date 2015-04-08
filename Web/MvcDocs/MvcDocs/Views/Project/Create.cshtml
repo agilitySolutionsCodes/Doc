@@ -1,0 +1,22 @@
+﻿@Scripts.Render("~/Js/Project")
+@Styles.Render("~/Css/Project")
+@{ViewBag.Title = "Registrar Novo Projeto";}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<div class="dvBody">
+    @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "FormRegister", @class = "formRegister" }))
+    {
+        <fieldset>
+            @Html.Label("Projeto", new { @class = "LblForm" })
+            @Html.TextBox("ProjectName", "", new { placeholder = "", @required = "", @type = "text", @class = "txtForm" })
+
+            @Html.Label("Cliente", new { @class = "LblForm" })
+            @Html.TextBox("ClientName", "", new { placeholder = "", @required = "", @type = "text", @class = "txtForm" })
+
+            <input class="inputSubmit" type="submit" value="Registrar" />
+        </fieldset>
+    }
+</div>

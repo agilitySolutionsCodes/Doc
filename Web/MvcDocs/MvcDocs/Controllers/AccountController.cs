@@ -28,7 +28,7 @@ namespace MvcDocs.Controllers
         }
 
         [HttpPost]
-        public JsonResult AuthenticateUser(FormCollection Fcollection)
+        public ActionResult AuthenticateUser(FormCollection Fcollection)
         {
             User ObjUser = new User();
             if (Fcollection["Login"] != null && Fcollection["Password"] != null)
@@ -49,14 +49,11 @@ namespace MvcDocs.Controllers
                 {
                     CreateUserSession(ObjUser);
                     System.Web.Security.FormsAuthentication.SetAuthCookie(ObjUser.PasswordHash + ObjUser.EntityID, cRemindMe);
+                    return RedirectToActionPermanent("Index", "Home");
                 }
             }
 
-            RedirectToRoute("Authenticate");
-            return Json(ObjUser.Online);
-            
-            //return RedirectToRoute("Authenticate");
-            //return RedirectToAction("Index", "Home");
+            return View();
         }
 
         public ActionResult LogOff()
@@ -150,7 +147,7 @@ namespace MvcDocs.Controllers
         protected User CreateUser(FormCollection collection)
         {
             User user = new User();
-            user.Name = collection["Name"];
+            user.FirstName = collection["FirstName"];
             user.LastName = collection["LastName"];
             user.Email = collection["Email"];
             user.BirthDate = Convert.ToDateTime(collection["BirthDate"]);

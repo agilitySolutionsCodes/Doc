@@ -1,20 +1,21 @@
 USE [DocsDB]
 GO
 
-/****** Object:  StoredProcedure [dbo].[stp_RegisterUser]    Script Date: 04/02/2015 11:26:55 ******/
+/****** Object:  StoredProcedure [dbo].[stp_RegisterUser]    Script Date: 04/08/2015 14:22:45 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
+
 -- ================================================
 -- Author:		Yule Souza
 -- Create date: 10/03/2015
 -- Description:	Register new user 
 -- =============================================
-CREATE PROCEDURE [dbo].[stp_RegisterUser]
-	@p_Name VARCHAR(60),
+ALTER PROCEDURE [dbo].[stp_RegisterUser]
+	@p_FirstName VARCHAR(60),
 	@p_LastName VARCHAR(60),
 	@p_Email VARCHAR(80),
 	@p_BirthDate DATE,
@@ -32,7 +33,7 @@ IF(SELECT COUNT(*) FROM Person WHERE Email = @p_Email) = 0
 	INSERT INTO Person 
 	VALUES
 	(
-	 @p_Name, 
+	 @p_FirstName, 
 	 @p_LastName,
 	 @p_Email,
 	 @p_BirthDate,
@@ -61,6 +62,7 @@ IF(SELECT COUNT(*) FROM Person WHERE Email = @p_Email) = 0
 	SET @p_UserOnline = 'TRUE'
  END
 END
+
 
 
 

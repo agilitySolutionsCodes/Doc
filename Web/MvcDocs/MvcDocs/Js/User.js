@@ -5,6 +5,7 @@ function validateEmailAuthenticate(emailAdressL) {
 
     if (!regexL.test(objEmailL.value)) {
         objEmailL.setCustomValidity("Informe um E-mail válido");
+        objEmailL.validity.customError;
         return false;
     }
     else {

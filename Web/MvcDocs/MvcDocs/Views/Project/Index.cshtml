@@ -1,5 +1,11 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@Scripts.Render("~/Js/Project")
+@Styles.Render("~/Css/Project")
+@{ViewBag.Title = "Projetos";}
 
-<h2>Index</h2>
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<div class="dvBody">
+    @Html.ActionLink("Registrar", "Create", "Project")
+</div>
